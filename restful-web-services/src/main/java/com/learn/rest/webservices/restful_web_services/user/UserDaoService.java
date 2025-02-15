@@ -12,10 +12,12 @@ public class UserDaoService {
 
     public static List<User> users = new ArrayList<>();
 
+    public static int usercount = 0;
+
     static{
-        users.add(new User(1, "Adam", LocalDate.now().minusYears(30)));
-        users.add(new User(2, "Eve", LocalDate.now().minusYears(25)));
-        users.add(new User(3, "Jim", LocalDate.now().minusYears(20)));
+        users.add(new User(++usercount, "Adam", LocalDate.now().minusYears(30)));
+        users.add(new User(++usercount, "Eve", LocalDate.now().minusYears(25)));
+        users.add(new User(++usercount, "Jim", LocalDate.now().minusYears(20)));
     }
 
     public List<User> findAll(){
@@ -24,5 +26,11 @@ public class UserDaoService {
 
     public User findUser(Integer id){
         return users.stream().filter(user -> user.getId().equals(id)).findFirst().get();
+    }
+
+    public User save(User user){
+        user.setId(++usercount);
+        users.add(user);
+        return user;
     }
 }
