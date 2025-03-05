@@ -1,0 +1,3 @@
+SELECT * FROM COURSE 
+
+insert into course(id, name, aurthor) values (1,'Learn Azure', 'Udemy');
