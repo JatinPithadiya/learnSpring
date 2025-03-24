@@ -1,10 +1,12 @@
 package com.learn.rest.webservices.restful_web_services.user;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -21,6 +23,9 @@ public class User {
     @Past(message = "Birth Date should always be in past")
     private LocalDate birthDate;
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+    
     public User(){
         
     }
@@ -54,9 +59,17 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    
+
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
+    }
+    public List<Post> getPosts() {
+        return posts;
+    }
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     
